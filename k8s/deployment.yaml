@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: travel-explorer
-          image: YOUR_DOCKERHUB_USERNAME/travel-explorer:latest
+          image: adityakarmalkar/travel-explorer:latest
           ports:
             - containerPort: 80
           readinessProbe:
