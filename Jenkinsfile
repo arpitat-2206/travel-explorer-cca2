@@ -1,8 +1,8 @@
+
 pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
         IMAGE_NAME = 'adityakarmalkar/travel-explorer'
     }
 
@@ -20,7 +20,7 @@ pipeline {
                     test -s style.css
                     test -s script.js
                     grep -q "<title>Travel Explorer</title>" index.html
-                    echo "Frontend file and title checks passed"
+                    echo "Frontend checks passed"
                 '''
             }
         }
@@ -33,16 +33,22 @@ pipeline {
 
         stage('Push Image') {
             steps {
-                sh '''
-                    echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin
-                    docker push $IMAGE_NAME:$BUILD_NUMBER
-                    docker push $IMAGE_NAME:latest
-                    docker logout
-                '''
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-credentials',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_TOKEN'
+                )]) {
+                    sh '''
+                        echo "$DOCKER_TOKEN" | docker login -u "$DOCKER_USER" --password-stdin
+                        docker push $IMAGE_NAME:$BUILD_NUMBER
+                        docker push $IMAGE_NAME:latest
+                        docker logout
+                    '''
+                }
             }
         }
 
-        stage('Deploy to Minikube') {
+        stage('Deploy to Kubernetes') {
             steps {
                 sh '''
                     kubectl apply -f k8s/deployment.yaml
@@ -61,12 +67,6 @@ pipeline {
                     kubectl get service travel-explorer
                 '''
             }
-        }
-    }
-
-    post {
-        always {
-            sh 'docker logout || true'
         }
     }
 }
