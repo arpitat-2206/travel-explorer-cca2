@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Explorer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="logo" href="#">Travel<span>Explorer</span></a>
+    <nav><a href="#destinations">Destinations</a><a href="#planner">Trip Planner</a><a href="#tips">Travel Tips</a></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">YOUR NEXT ADVENTURE STARTS HERE</p>
+        <h1>Find your next<br><span>great escape.</span></h1>
+        <p class="intro">Discover beautiful places, collect ideas, and plan a trip that feels like you.</p>
+        <a class="primary-btn" href="#destinations">Explore destinations</a>
+      </div>
+      <div class="hero-art" aria-label="Illustration of mountains and sun">
+        <div class="sun"></div><div class="mountain back"></div><div class="mountain front"></div>
+        <div class="lake"></div><div class="art-label">GO SOMEWHERE NEW ↗</div>
+      </div>
+    </section>
+    <section id="destinations" class="section">
+      <div class="section-heading"><div><p class="eyebrow">GET INSPIRED</p><h2>Popular destinations</h2></div><p>Places worth adding to your bucket list.</p></div>
+      <div class="cards">
+        <article class="destination-card"><div class="destination-image bali"><span>ISLAND LIFE</span></div><div class="card-body"><div class="card-title"><h3>Bali, Indonesia</h3><span>₹₹</span></div><p>Green rice terraces, blue water, and slow mornings.</p><button class="save-btn" data-place="Bali, Indonesia">＋ Add to my list</button></div></article>
+        <article class="destination-card"><div class="destination-image swiss"><span>MOUNTAIN AIR</span></div><div class="card-body"><div class="card-title"><h3>Swiss Alps</h3><span>₹₹₹</span></div><p>Alpine villages, scenic trains, and fresh mountain air.</p><button class="save-btn" data-place="Swiss Alps">＋ Add to my list</button></div></article>
+        <article class="destination-card"><div class="destination-image kyoto"><span>CULTURE & CALM</span></div><div class="card-body"><div class="card-title"><h3>Kyoto, Japan</h3><span>₹₹₹</span></div><p>Quiet temples, traditional streets, and gardens.</p><button class="save-btn" data-place="Kyoto, Japan">＋ Add to my list</button></div></article>
+      </div>
+    </section>
+    <section id="planner" class="planner-section">
+      <div><p class="eyebrow">MAKE IT YOURS</p><h2>Your mini trip planner</h2><p class="planner-copy">Choose a place, pick your travel style, and create a simple trip idea. This is a frontend-only demo; nothing is sent to a server.</p></div>
+      <form id="trip-form" class="planner-form">
+        <label for="place">Where do you want to go?</label><input id="place" required placeholder="e.g. Goa">
+        <label for="days">How many days?</label><select id="days"><option>2 days</option><option>3 days</option><option>5 days</option><option>7 days</option></select>
+        <label for="style">Travel style</label><select id="style"><option>Relax and recharge</option><option>Adventure</option><option>Culture and food</option><option>Nature and wildlife</option></select>
+        <button class="primary-btn" type="submit">Create trip idea</button>
+        <p id="trip-result" class="result" aria-live="polite"></p>
+      </form>
+    </section>
+    <section id="tips" class="section tips-section"><p class="eyebrow">TRAVEL SMART</p><h2>Little tips, better trips.</h2><div class="tips-grid"><div><span>01</span><h3>Pack light</h3><p>Carry only what you need and leave room for souvenirs.</p></div><div><span>02</span><h3>Stay curious</h3><p>Try local food and learn a few words of the local language.</p></div><div><span>03</span><h3>Keep a plan B</h3><p>Save important details offline and allow time for surprises.</p></div></div></section>
+  </main>
+  <footer><a class="logo" href="#">Travel<span>Explorer</span></a><p>A simple travel inspiration website · Frontend-only college project</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>

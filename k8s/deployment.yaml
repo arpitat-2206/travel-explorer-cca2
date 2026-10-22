@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: travel-explorer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: travel-explorer
+  template:
+    metadata:
+      labels:
+        app: travel-explorer
+    spec:
+      containers:
+        - name: travel-explorer
+          image: YOUR_DOCKERHUB_USERNAME/travel-explorer:latest
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
